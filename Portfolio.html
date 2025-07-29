@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ashith JAIN B N - Portfolio</title>
+    <link rel="icon" href="src/assets/favicon.png" type="image/png" />
+    <meta
+      name="description"
+      content="Portfolio of Ashith JAIN B N, Web Developer & UI/UX Designer" />
+    <meta
+      name="keywords"
+      content="Ashith JAIN B N, Web Developer, UI/UX Designer, Portfolio, MCA Student, SIT Tumkur" />
+    <meta name="author" content="Ashith JAIN B N" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #667eea;
+        --secondary: #764ba2;
+        --bg-dark: #0d1117;
+        --card-dark: #161b22;
+        --text-light: #c9d1d9;
+        --text-bright: #ffffff;
+        --accent: #58a6ff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      .hero-section {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: var(--text-bright);
+        position: relative;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .hero-overlay {
+        background: rgba(0, 0, 0, 0.4);
+        position: absolute;
+        inset: 0;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid white;
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .hero-name {
+        font-size: 3.5rem;
+        font-weight: bold;
+        animation: slideUp 1s ease-out;
+        color: var(--text-bright);
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+        font-size: 2.5rem;
+      }
+
+      .skill-badge {
+        background: var(--accent);
+        color: var(--text-bright);
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+      }
+
+      .project-card {
+        background: var(--card-dark);
+        border: 1px solid #30363d;
+        color: var(--text-light);
+        border-radius: 12px;
+        transition: transform 0.3s;
+      }
+
+      .project-card:hover {
+        transform: scale(1.03);
+        border-color: var(--accent);
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border: none;
+        color: white;
+        border-radius: 25px;
+      }
+
+      .btn-outline-light,
+      .btn-outline-dark,
+      .btn-outline-primary {
+        border-radius: 25px;
+      }
+
+      .card {
+        background: var(--card-dark);
+        color: var(--text-light);
+      }
+
+      footer {
+        background-color: #010409;
+        color: var(--text-light);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section
+      class="hero-section d-flex align-items-center justify-content-center text-center text-white position-relative">
+      <div class="hero-overlay"></div>
+      <div class="container position-relative">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <img
+              src="/src/assets/ashithjainbn.jpg"
+              alt="Ashith Jain B N"
+              class="profile-img mb-4" />
+            <h1 class="display-1 fw-bold mb-3 hero-name">Ashith JAIN B N</h1>
+            <p class="lead mb-2"><b>Web Developer & UI/UX Designer</b></p>
+            <p class="mb-4">
+              MCA Student at SIT Tumkur | From Tumkur, Karnataka
+            </p>
+            <div
+              class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+              <a
+                href="src/assets/Ashith_Jain_B_N_CV.pdf"
+                class="btn btn-primary btn-lg">
+                <i class="fas fa-download me-2"></i>Download CV
+              </a>
+              <a href="#contact" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-envelope me-2"></i>Contact Me
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card shadow-lg border-0">
+              <div class="card-header text-center bg-transparent">
+                <h2 class="gradient-text">About Me</h2>
+              </div>
+              <div class="card-body text-center">
+                <p class="lead">
+                  I'm a passionate web developer and UI/UX designer currently
+                  pursuing my MCA at SIT Tumkur. With expertise in multiple
+                  programming languages and modern frameworks, I create
+                  beautiful, functional web applications that provide
+                  exceptional user experiences. My journey in tech combines
+                  technical proficiency with creative design thinking.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 gradient-text">Skills & Technologies</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+              <span class="badge skill-badge">C Programming</span>
+              <span class="badge skill-badge">Core Java</span>
+              <span class="badge skill-badge">HTML</span>
+              <span class="badge skill-badge">CSS</span>
+              <span class="badge skill-badge">JavaScript</span>
+              <span class="badge skill-badge">React</span>
+              <span class="badge skill-badge">Python</span>
+              <span class="badge skill-badge">UI/UX Design</span>
+              <span class="badge skill-badge">Canva</span>
+              <span class="badge skill-badge">Figma</span>
+              <span class="badge skill-badge">VS Code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5 gradient-text">Featured Projects</h2>
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow project-card">
+              <div
+                class="card-header d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title mb-2">Sanchari Canteen Web UI</h5>
+                  <span class="badge bg-primary">Web Development UI / UX</span>
+                </div>
+                <a
+                  href="https://github.com/Ashithjain05/Sanchaari_canteen_Web_UI"
+                  target="_blank"
+                  title="View on GitHub"
+                  class="text-muted">
+                  <i class="fab fa-github fa-lg"> </i>
+                </a>
+                <a
+                  href="https://ashithjain05.github.io/Sanchaari_canteen_Web_UI"
+                  target="_blank"
+                  title="View Live"
+                  class="text-muted">
+                  <i class="fas fa-external-link-alt text-muted"></i>
+                </a>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  A static website for food booking while traveling in buses.
+                  Built with HTML, CSS, and JavaScript for seamless user
+                  experience.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-secondary">HTML</span>
+                  <span class="badge bg-secondary">CSS</span>
+                  <span class="badge bg-secondary">JavaScript</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add other projects similarly -->
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow project-card">
+              <div
+                class="card-header d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title mb-2">Python Libraries with React</h5>
+                  <span class="badge bg-success">Full Stack</span>
+                </div>
+                <a
+                  href="https://github.com/Ashithjain05/python_libarary_npm_modules_with_react"
+                  target="_blank"
+                  class="text-muted">
+                  <i class="fab fa-github fa-lg"></i>
+                </a>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  Created custom NPM modules combining Python libraries with
+                  React components for enhanced functionality.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-secondary">Python</span>
+                  <span class="badge bg-secondary">React</span>
+                  <span class="badge bg-secondary">NPM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6">
+            <div class="card h-100 shadow project-card">
+              <div
+                class="card-header d-flex justify-content-between align-items-start">
+                <div>
+                  <h5 class="card-title mb-2">TaxiGo Car Booking Website</h5>
+                  <span class="badge bg-info">Web Application</span>
+                </div>
+                <i class="fas fa-external-link-alt text-muted"></i>
+              </div>
+              <div class="card-body">
+                <p class="card-text">
+                  A comprehensive car booking platform with modern UI/UX design
+                  and responsive functionality.
+                </p>
+                <div class="d-flex flex-wrap gap-2">
+                  <span class="badge bg-secondary">HTML</span>
+                  <span class="badge bg-secondary">CSS</span>
+                  <span class="badge bg-secondary">JavaScript</span>
+                  <span class="badge bg-secondary">PHP</span>
+                  <span class="badge bg-secondary">MySQL</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-5 bg-light">
+      <div class="container">
+        <h2 class="text-center mb-5 gradient-text">Education</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+              <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Master of Computer Applications (MCA)</h4>
+              </div>
+              <div class="card-body">
+                <h5 class="text-primary">
+                  <a
+                    href="http://www.sit.ac.in/"
+                    target="_blank"
+                    class="text-primary text-decoration-none">
+                    Siddaganga Institute of Technology (SIT), Tumkur
+                  </a>
+                </h5>
+
+                <p class="mb-2">
+                  <i class="fas fa-map-marker-alt me-2"></i>Tumkur, Karnataka
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+      <div class="container">
+        <h2 class="text-center mb-5 gradient-text">Let's Connect</h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="card shadow-lg border-0">
+              <div class="card-body text-center p-5">
+                <p class="lead mb-4">
+                  Ready to bring your ideas to life? Let's collaborate on your
+                  next project!
+                </p>
+                <div
+                  class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                  <a
+                    href="mailto:ashithjainbn@gmail.com"
+                    class="btn btn-primary btn-lg">
+                    <i class="fas fa-envelope me-2"></i>Email Me
+                  </a>
+                  <a
+                    href="https://github.com/Ashithjain05"
+                    class="btn btn-outline-dark btn-lg">
+                    <i class="fab fa-github me-2"></i>GitHub
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/Ashithjain05"
+                    class="btn btn-outline-primary btn-lg">
+                    <i class="fab fa-linkedin me-2"></i>LinkedIn
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white text-center">
+      <p class="mb-0">© 2025 Ashith Jain B N. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
