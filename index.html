@@ -37,6 +37,8 @@
         background-color: var(--bg-dark);
         color: var(--text-light);
         font-family: "Segoe UI", sans-serif;
+        padding-left: 1rem;
+        padding-right: 1rem;
       }
 
       .hero-section {
@@ -44,7 +46,9 @@
         color: var(--text-bright);
         position: relative;
         min-height: 100vh;
+        padding: 3rem 1rem;
         overflow: hidden;
+        text-align: center;
       }
 
       .hero-overlay {
@@ -54,19 +58,32 @@
       }
 
       .profile-img {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         border-radius: 50%;
         border: 4px solid white;
         box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
         animation: float 3s ease-in-out infinite;
       }
 
+      @media (min-width: 768px) {
+        .profile-img {
+          width: 150px;
+          height: 150px;
+        }
+      }
+
       .hero-name {
-        font-size: 3.5rem;
+        font-size: 2rem;
         font-weight: bold;
         animation: slideUp 1s ease-out;
         color: var(--text-bright);
+      }
+
+      @media (min-width: 768px) {
+        .hero-name {
+          font-size: 3.5rem;
+        }
       }
 
       .gradient-text {
@@ -74,7 +91,13 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: bold;
-        font-size: 2.5rem;
+        font-size: 1.8rem;
+      }
+
+      @media (min-width: 768px) {
+        .gradient-text {
+          font-size: 2.5rem;
+        }
       }
 
       .skill-badge {
@@ -116,6 +139,11 @@
         color: var(--text-light);
       }
 
+      .card-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
       footer {
         background-color: #010409;
         color: var(--text-light);
@@ -145,33 +173,26 @@
   </head>
   <body>
     <!-- Hero Section -->
-    <section
-      class="hero-section d-flex align-items-center justify-content-center text-center text-white position-relative">
+    <section class="hero-section position-relative">
       <div class="hero-overlay"></div>
       <div class="container position-relative">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <img
-              src="src/assets/ashithjainbn.jpg"
-              alt="Ashith Jain B N"
-              class="profile-img mb-4" />
-            <h1 class="display-1 fw-bold mb-3 hero-name">Ashith JAIN B N</h1>
-            <p class="lead mb-2"><b>Web Developer & UI/UX Designer</b></p>
-            <p class="mb-4">
-              MCA Student at SIT Tumkur | From Tumkur, Karnataka
-            </p>
-            <div
-              class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-              <a
-                href="src/assets/Ashith_Jain_B_N_CV.pdf"
-                class="btn btn-primary btn-lg">
-                <i class="fas fa-download me-2"></i>Download CV
-              </a>
-              <a href="#contact" class="btn btn-outline-light btn-lg">
-                <i class="fas fa-envelope me-2"></i>Contact Me
-              </a>
-            </div>
-          </div>
+        <img
+          src="src/assets/ashithjainbn.jpg"
+          alt="Ashith Jain B N"
+          class="profile-img mb-4" />
+        <h1 class="fw-bold mb-3 hero-name">Ashith JAIN B N</h1>
+        <p class="lead mb-2"><b>Web Developer & UI/UX Designer</b></p>
+        <p class="mb-4">MCA Student at SIT Tumkur | From Tumkur, Karnataka</p>
+        <div
+          class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+          <a
+            href="src/assets/Ashith_Jain_B_N_CV.pdf"
+            class="btn btn-primary btn-lg">
+            <i class="fas fa-download me-2"></i>Download CV
+          </a>
+          <a href="#contact" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-envelope me-2"></i>Contact Me
+          </a>
         </div>
       </div>
     </section>
@@ -179,48 +200,39 @@
     <!-- About Section -->
     <section id="about" class="py-5">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="card shadow-lg border-0">
-              <div class="card-header text-center bg-transparent">
-                <h2 class="gradient-text">About Me</h2>
-              </div>
-              <div class="card-body text-center">
-                <p class="lead">
-                  I'm a passionate web developer and UI/UX designer currently
-                  pursuing my MCA at SIT Tumkur. With expertise in multiple
-                  programming languages and modern frameworks, I create
-                  beautiful, functional web applications that provide
-                  exceptional user experiences. My journey in tech combines
-                  technical proficiency with creative design thinking.
-                </p>
-              </div>
-            </div>
+        <div class="card shadow-lg border-0 text-center">
+          <div class="card-header bg-transparent">
+            <h2 class="gradient-text">About Me</h2>
+          </div>
+          <div class="card-body">
+            <p class="lead">
+              I'm a passionate web developer and UI/UX designer currently
+              pursuing my MCA at SIT Tumkur. With expertise in multiple
+              programming languages and modern frameworks, I create beautiful,
+              functional web applications that provide exceptional user
+              experiences.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-5 bg-light">
+    <section id="skills" class="py-5 bg-light text-dark">
       <div class="container">
         <h2 class="text-center mb-5 gradient-text">Skills & Technologies</h2>
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="d-flex flex-wrap justify-content-center gap-3">
-              <span class="badge skill-badge">C Programming</span>
-              <span class="badge skill-badge">Core Java</span>
-              <span class="badge skill-badge">HTML</span>
-              <span class="badge skill-badge">CSS</span>
-              <span class="badge skill-badge">JavaScript</span>
-              <span class="badge skill-badge">React</span>
-              <span class="badge skill-badge">Python</span>
-              <span class="badge skill-badge">UI/UX Design</span>
-              <span class="badge skill-badge">Canva</span>
-              <span class="badge skill-badge">Figma</span>
-              <span class="badge skill-badge">VS Code</span>
-            </div>
-          </div>
+        <div class="d-flex flex-wrap justify-content-center gap-3">
+          <span class="badge skill-badge">C Programming</span>
+          <span class="badge skill-badge">Core Java</span>
+          <span class="badge skill-badge">HTML</span>
+          <span class="badge skill-badge">CSS</span>
+          <span class="badge skill-badge">JavaScript</span>
+          <span class="badge skill-badge">React</span>
+          <span class="badge skill-badge">Python</span>
+          <span class="badge skill-badge">UI/UX Design</span>
+          <span class="badge skill-badge">Canva</span>
+          <span class="badge skill-badge">Figma</span>
+          <span class="badge skill-badge">VS Code</span>
         </div>
       </div>
     </section>
@@ -232,26 +244,25 @@
         <div class="row g-4">
           <div class="col-lg-4 col-md-6">
             <div class="card h-100 shadow project-card">
-              <div
-                class="card-header d-flex justify-content-between align-items-start">
+              <div class="card-header d-flex justify-content-between">
                 <div>
                   <h5 class="card-title mb-2">Sanchari Canteen Web UI</h5>
                   <span class="badge bg-primary">Web Development UI / UX</span>
                 </div>
-                <a
-                  href="https://github.com/Ashithjain05/Sanchaari_canteen_Web_UI"
-                  target="_blank"
-                  title="View on GitHub"
-                  class="text-muted">
-                  <i class="fab fa-github fa-lg"> </i>
-                </a>
-                <a
-                  href="https://ashithjain05.github.io/Sanchaari_canteen_Web_UI"
-                  target="_blank"
-                  title="View Live"
-                  class="text-muted">
-                  <i class="fas fa-external-link-alt text-muted"></i>
-                </a>
+                <div>
+                  <a
+                    href="https://github.com/Ashithjain05/Sanchaari_canteen_Web_UI"
+                    target="_blank"
+                    class="text-muted me-2">
+                    <i class="fab fa-github fa-lg"></i>
+                  </a>
+                  <a
+                    href="https://ashithjain05.github.io/Sanchaari_canteen_Web_UI"
+                    target="_blank"
+                    class="text-muted">
+                    <i class="fas fa-external-link-alt fa-lg"></i>
+                  </a>
+                </div>
               </div>
               <div class="card-body">
                 <p class="card-text">
@@ -268,11 +279,9 @@
             </div>
           </div>
 
-          <!-- Add other projects similarly -->
           <div class="col-lg-4 col-md-6">
             <div class="card h-100 shadow project-card">
-              <div
-                class="card-header d-flex justify-content-between align-items-start">
+              <div class="card-header d-flex justify-content-between">
                 <div>
                   <h5 class="card-title mb-2">Python Libraries with React</h5>
                   <span class="badge bg-success">Full Stack</span>
@@ -300,13 +309,11 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="card h-100 shadow project-card">
-              <div
-                class="card-header d-flex justify-content-between align-items-start">
+              <div class="card-header d-flex justify-content-between">
                 <div>
                   <h5 class="card-title mb-2">TaxiGo Car Booking Website</h5>
                   <span class="badge bg-info">Web Application</span>
                 </div>
-                <i class="fas fa-external-link-alt text-muted"></i>
               </div>
               <div class="card-body">
                 <p class="card-text">
@@ -328,30 +335,25 @@
     </section>
 
     <!-- Education Section -->
-    <section id="education" class="py-5 bg-light">
+    <section id="education" class="py-5 bg-light text-dark">
       <div class="container">
         <h2 class="text-center mb-5 gradient-text">Education</h2>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="card shadow-lg border-0">
-              <div class="card-header bg-primary text-white">
-                <h4 class="mb-0">Master of Computer Applications (MCA)</h4>
-              </div>
-              <div class="card-body">
-                <h5 class="text-primary">
-                  <a
-                    href="http://www.sit.ac.in/"
-                    target="_blank"
-                    class="text-primary text-decoration-none">
-                    Siddaganga Institute of Technology (SIT), Tumkur
-                  </a>
-                </h5>
-
-                <p class="mb-2">
-                  <i class="fas fa-map-marker-alt me-2"></i>Tumkur, Karnataka
-                </p>
-              </div>
-            </div>
+        <div class="card shadow-lg border-0">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Master of Computer Applications (MCA)</h4>
+          </div>
+          <div class="card-body">
+            <h5 class="text-primary">
+              <a
+                href="http://www.sit.ac.in/"
+                target="_blank"
+                class="text-primary text-decoration-none">
+                Siddaganga Institute of Technology (SIT), Tumkur
+              </a>
+            </h5>
+            <p class="mb-2">
+              <i class="fas fa-map-marker-alt me-2"></i>Tumkur, Karnataka
+            </p>
           </div>
         </div>
       </div>
@@ -361,33 +363,29 @@
     <section id="contact" class="py-5">
       <div class="container">
         <h2 class="text-center mb-5 gradient-text">Let's Connect</h2>
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="card shadow-lg border-0">
-              <div class="card-body text-center p-5">
-                <p class="lead mb-4">
-                  Ready to bring your ideas to life? Let's collaborate on your
-                  next project!
-                </p>
-                <div
-                  class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                  <a
-                    href="mailto:ashithjainbn@gmail.com"
-                    class="btn btn-primary btn-lg">
-                    <i class="fas fa-envelope me-2"></i>Email Me
-                  </a>
-                  <a
-                    href="https://github.com/Ashithjain05"
-                    class="btn btn-outline-dark btn-lg">
-                    <i class="fab fa-github me-2"></i>GitHub
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/Ashithjain05"
-                    class="btn btn-outline-primary btn-lg">
-                    <i class="fab fa-linkedin me-2"></i>LinkedIn
-                  </a>
-                </div>
-              </div>
+        <div class="card shadow-lg border-0">
+          <div class="card-body text-center p-5">
+            <p class="lead mb-4">
+              Ready to bring your ideas to life? Let's collaborate on your next
+              project!
+            </p>
+            <div
+              class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+              <a
+                href="mailto:ashithjainbn@gmail.com"
+                class="btn btn-primary btn-lg">
+                <i class="fas fa-envelope me-2"></i>Email Me
+              </a>
+              <a
+                href="https://github.com/Ashithjain05"
+                class="btn btn-outline-dark btn-lg">
+                <i class="fab fa-github me-2"></i>GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/Ashithjain05"
+                class="btn btn-outline-primary btn-lg">
+                <i class="fab fa-linkedin me-2"></i>LinkedIn
+              </a>
             </div>
           </div>
         </div>
