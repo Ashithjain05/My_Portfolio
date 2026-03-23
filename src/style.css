@@ -145,12 +145,89 @@ body {
   height:100%; padding:0 2rem;
   display:flex; align-items:center; justify-content:space-between;
 }
-.nav-logo {
-  font-family:var(--font-mono); font-size:1.4rem; font-weight:700;
-  text-decoration:none; color:var(--c-white);
-  letter-spacing:0.05em;
+.nav-logo, .footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease);
 }
-.logo-bracket { color:var(--c-p1); }
+.nav-logo:hover, .footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-skull {
+  width: 44px;
+  height: 44px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  transition: all 0.3s var(--ease);
+}
+
+.logo-skull i {
+  font-size: 1.5rem;
+  background: var(--grad-main);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.5));
+  z-index: 1;
+}
+
+.skull-glow {
+  position: absolute;
+  inset: -2px;
+  background: var(--grad-main);
+  border-radius: 14px;
+  opacity: 0;
+  filter: blur(8px);
+  transition: opacity 0.3s;
+  z-index: 0;
+}
+
+.nav-logo:hover .logo-skull, 
+.footer-logo:hover .logo-skull {
+  transform: translateY(-2px) scale(1.05);
+  border-color: var(--c-p1);
+}
+
+.nav-logo:hover .skull-glow,
+.footer-logo:hover .skull-glow {
+  opacity: 0.4;
+}
+
+.logo-text-group {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+  color: var(--c-white);
+}
+
+.logo-main-text {
+  font-family: var(--font-main);
+  font-weight: 900;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  background: linear-gradient(to right, #fff, rgba(255,255,255,0.7));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.logo-sub-text {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--c-p1);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-top: 2px;
+}
 .nav-links {
   display:flex; gap:2rem; list-style:none; align-items:center;
 }
@@ -555,8 +632,9 @@ body {
   border:1px solid var(--c-border);
   color:var(--c-text); padding:6px 14px;
   border-radius:100px; font-size:0.85rem; font-weight:500;
+  text-decoration: none;
   transition:border-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
-  cursor:default;
+  cursor:pointer;
 }
 .tech-badge:hover {
   border-color:var(--c-border-hover);
@@ -1078,4 +1156,60 @@ body {
   .featured-body { flex-direction:column; }
   .featured-icon { width:52px; height:52px; font-size:1.3rem; border-radius:14px; }
   .featured-title { font-size:1.15rem; }
+}
+
+/* ===========================
+   TOAST NOTIFICATIONS
+=========================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  padding: 1rem 1.5rem;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 12px;
+  color: var(--c-white);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 9999;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  transform: translateY(100px);
+  opacity: 0;
+  transition: transform 0.4s var(--ease), opacity 0.4s;
+}
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+.toast-success { border-left: 4px solid var(--c-green); }
+.toast-error { border-left: 4px solid #ef4444; }
+.toast i { font-size: 1.25rem; }
+.toast-success i { color: var(--c-green); }
+.toast-error i { color: #ef4444; }
+
+/* Enhanced Button States */
+.btn-success {
+  background: var(--c-green) !important;
+  box-shadow: 0 4px 20px rgba(16,185,129,0.3) !important;
+}
+.btn-error {
+  background: #ef4444 !important;
+  box-shadow: 0 4px 20px rgba(239,68,68,0.3) !important;
+}
+.btn:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  .toast {
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    justify-content: center;
+  }
 }

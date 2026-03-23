@@ -232,6 +232,26 @@ document.querySelectorAll('.tilt-card').forEach(card => {
   });
 });
 
+// ── Toast System ──────────────────────────────────────────
+function showToast(message, type = 'success') {
+  const toast = document.createElement('div');
+  toast.className = `toast toast-${type}`;
+  toast.innerHTML = `
+    <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+    <span>${message}</span>
+  `;
+  document.body.appendChild(toast);
+  
+  // Animate in
+  setTimeout(() => toast.classList.add('show'), 100);
+  
+  // Remove after 4s
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 4000);
+}
+
 // ── Contact Form (Actual Email Sending via Web3Forms) ────────
 window.handleFormSubmit = async function(e) {
   e.preventDefault();
@@ -239,49 +259,74 @@ window.handleFormSubmit = async function(e) {
   const btn = document.getElementById('submit-btn');
   const successMsg = document.getElementById('form-success');
   
+  if (btn.disabled) return;
+
+  // Capture form data
+  const formData = new FormData(form);
+  const name = formData.get('name');
+  const email = formData.get('email');
+  const message = formData.get('message');
+
   // Disable button and show loading state
   btn.disabled = true;
   const originalBtnContent = btn.innerHTML;
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
-  const formData = new FormData(form);
   formData.append("access_key", "ec249936-fd3a-4092-bb0b-ff5693abc207");
 
   try {
+    const object = Object.fromEntries(formData);
+    const json = JSON.stringify(object);
+
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: formData
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+      },
+      body: json
     });
 
     const result = await response.json();
 
     if (result.success) {
       // Success state
-      btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
-      successMsg.classList.add('show');
+      btn.classList.add('btn-success');
+      btn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
+      showToast('Message sent successfully! I will get back to you soon.');
       form.reset();
       
       setTimeout(() => {
         btn.disabled = false;
+        btn.classList.remove('btn-success');
         btn.innerHTML = originalBtnContent;
-        successMsg.classList.remove('show');
       }, 5000);
     } else {
       // API error state
-      console.error("Submission failed:", result);
-      btn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.innerHTML = originalBtnContent;
-      }, 3000);
+      throw new Error(result.message || 'Submission failed');
     }
   } catch (error) {
-    // Network error state
-    console.error("Network error:", error);
+    // Network or API error state
+    console.error("Submission error:", error);
+    
+    btn.classList.add('btn-error');
     btn.innerHTML = '<i class="fas fa-wifi"></i> Connection Error';
+    
+    showToast('Failed to send via API. Opening email client...', 'error');
+    
+    // Fallback: Open mailto after a short delay
     setTimeout(() => {
-      btn.disabled = false;
-      btn.innerHTML = originalBtnContent;
-    }, 3000);
+      btn.innerHTML = '<i class="fas fa-envelope"></i> Opening Email...';
+      const subject = encodeURIComponent(`Portfolio Message from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      window.location.href = `mailto:ashithjainbn@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Reset button
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.classList.remove('btn-error');
+        btn.innerHTML = originalBtnContent;
+      }, 2000);
+    }, 1500);
   }
 };
