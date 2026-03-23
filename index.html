@@ -1,402 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ASHITH JAIN B N - Portfolio</title>
-    <link rel="icon" href="src/assets/favicon.png" type="image/png" />
-    <meta
-      name="description"
-      content="Portfolio of Ashith JAIN B N, Web Developer & UI/UX Designer" />
-    <meta
-      name="keywords"
-      content="Ashith JAIN B N, Web Developer, UI/UX Designer, Portfolio, MCA Student, SIT Tumkur" />
-    <meta name="author" content="Ashith JAIN B N" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-      rel="stylesheet" />
-    <style>
-      :root {
-        --primary: #667eea;
-        --secondary: #764ba2;
-        --bg-dark: #0d1117;
-        --card-dark: #161b22;
-        --text-light: #c9d1d9;
-        --text-bright: #ffffff;
-        --accent: #58a6ff;
-      }
 
-      html {
-        scroll-behavior: smooth;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashith Jain B N — Full-Stack & AI Developer</title>
+  <link rel="icon" href="src/assets/favicon.png" type="image/png" />
+  <meta name="description"
+    content="Portfolio of Ashith Jain B N — Full-Stack Developer & AI/ML Enthusiast building modern web apps and AI-powered systems." />
+  <meta name="keywords" content="Ashith Jain B N, Web Developer, UI/UX Designer, Portfolio, MCA, SIT Tumkur" />
+  <meta name="author" content="Ashith Jain B N" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="src/style.css" />
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
 
-      body {
-        background-color: var(--bg-dark);
-        color: var(--text-light);
-        font-family: "Segoe UI", sans-serif;
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
+<body>
 
-      .hero-section {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: var(--text-bright);
-        position: relative;
-        min-height: 100vh;
-        padding: 3rem 1rem;
-        overflow: hidden;
-        text-align: center;
-      }
+  <!-- Custom Cursor -->
+  <div id="cursor" class="cursor"></div>
+  <div id="cursor-follower" class="cursor-follower"></div>
 
-      .hero-overlay {
-        background: rgba(0, 0, 0, 0.4);
-        position: absolute;
-        inset: 0;
-      }
+  <!-- Particle Canvas -->
+  <canvas id="particles-canvas"></canvas>
 
-      .profile-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        border: 4px solid white;
-        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-        animation: float 3s ease-in-out infinite;
-      }
+  <!-- Aurora Background -->
+  <div class="aurora">
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+    <div class="aurora__item"></div>
+  </div>
 
-      @media (min-width: 768px) {
-        .profile-img {
-          width: 150px;
-          height: 150px;
-        }
-      }
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#home" class="nav-logo">
+        <span class="logo-bracket">&lt;</span>AJ<span class="logo-bracket">/&gt;</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#ai-experience" class="nav-link">AI / ML</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#education" class="nav-link">Education</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
 
-      .hero-name {
-        font-size: 2rem;
-        font-weight: bold;
-        animation: slideUp 1s ease-out;
-        color: var(--text-bright);
-      }
-
-      @media (min-width: 768px) {
-        .hero-name {
-          font-size: 3.5rem;
-        }
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        font-weight: bold;
-        font-size: 1.8rem;
-      }
-
-      @media (min-width: 768px) {
-        .gradient-text {
-          font-size: 2.5rem;
-        }
-      }
-
-      .skill-badge {
-        background: var(--accent);
-        color: var(--text-bright);
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-      }
-
-      .project-card {
-        background: var(--card-dark);
-        border: 1px solid #30363d;
-        color: var(--text-light);
-        border-radius: 12px;
-        transition: transform 0.3s;
-      }
-
-      .project-card:hover {
-        transform: scale(1.03);
-        border-color: var(--accent);
-      }
-
-      .btn-primary {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        border: none;
-        color: white;
-        border-radius: 25px;
-      }
-
-      .btn-outline-light,
-      .btn-outline-dark,
-      .btn-outline-primary {
-        border-radius: 25px;
-      }
-
-      .card {
-        background: var(--card-dark);
-        color: var(--text-light);
-      }
-
-      .card-text {
-        font-size: 0.95rem;
-        line-height: 1.6;
-      }
-
-      footer {
-        background-color: #010409;
-        color: var(--text-light);
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-10px);
-        }
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Hero Section -->
-    <section class="hero-section position-relative">
-      <div class="hero-overlay"></div>
-      <div class="container position-relative">
-        <img
-          src="src/assets/ashithjainbn.jpg"
-          alt="Ashith Jain B N"
-          class="profile-img mb-4" />
-        <h1 class="fw-bold mb-3 hero-name">ASHITH JAIN B N</h1>
-        <p class="lead mb-2"><b>Web Developer & UI/UX Designer</b></p>
-        <p class="mb-4">MCA Student at SIT Tumkur | From Tumkur, Karnataka</p>
-        <div
-          class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-          <a
-            href="/src/assets/Ashith_Resume.pdf"
-            class="btn btn-primary btn-lg">
-            <i class="fas fa-download me-2"></i>Download Resume
-          </a>
-          <a href="#contact" class="btn btn-outline-light btn-lg">
-            <i class="fas fa-envelope me-2"></i>Contact Me
-          </a>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <div class="hero-badge reveal-up">
+        <span class="badge-dot"></span>
+        Available for opportunities
+      </div>
+      <h1 class="hero-name reveal-up">
+        Hi, I'm <span class="name-highlight">Ashith Jain</span>
+      </h1>
+      <div class="hero-typewriter reveal-up">
+        <span class="typewriter-prefix">I build </span>
+        <span class="typewriter-text" id="typewriter"></span>
+        <span class="typewriter-cursor">|</span>
+      </div>
+      <div class="hero-roles reveal-up">
+        <span class="hero-role-tag"><i class="fas fa-code"></i> Full-Stack Dev</span>
+        <span class="hero-role-tag ai-tag"><i class="fas fa-brain"></i> AI Engineer</span>
+        <span class="hero-role-tag"><i class="fas fa-palette"></i> UI/UX Designer</span>
+      </div>
+      <p class="hero-sub reveal-up">
+        2+ Years of Software Development Experience<br>
+        Interested in AI Engineer &amp; Full-Stack roles · Focused on building scalable AI-powered systems
+      </p>
+      <div class="hero-actions reveal-up">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-paper-plane"></i> Get in Touch
+        </a>
+      </div>
+      <div class="hero-scroll reveal-up">
+        <div class="scroll-indicator">
+          <div class="scroll-dot"></div>
+        </div>
+        <span>Scroll to explore</span>
+      </div>
+    </div>
+    <div class="hero-visual reveal-right">
+      <div class="profile-ring">
+        <div class="profile-ring-inner">
+          <img src="src/assets/ashithjainbn.jpg" alt="Ashith Jain B N" class="profile-photo" />
+        </div>
+        <div class="ring-orbit orbit-1">
+          <div class="orbit-dot"><i class="fab fa-react"></i></div>
+        </div>
+        <div class="ring-orbit orbit-2">
+          <div class="orbit-dot"><i class="fab fa-python"></i></div>
+        </div>
+        <div class="ring-orbit orbit-3">
+          <div class="orbit-dot"><i class="fab fa-js"></i></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
-      <div class="container">
-        <div class="card shadow-lg border-0 text-center">
-          <div class="card-header bg-transparent">
-            <h2 class="gradient-text">About Me</h2>
-          </div>
-          <div class="card-body">
-            <p class="lead">
-              I'm a passionate web developer and UI/UX designer currently
-              pursuing my MCA at SIT Tumkur. With expertise in multiple
-              programming languages and modern frameworks, I create beautiful,
-              functional web applications that provide exceptional user
-              experiences.
-            </p>
-          </div>
-        </div>
+  <!-- About Section -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Who I Am</span>
+        <h2 class="section-title">About <span class="highlight">Me</span></h2>
+        <div class="section-line"></div>
       </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-5 bg-light text-dark">
-      <div class="container">
-        <h2 class="text-center mb-5 gradient-text">Skills & Technologies</h2>
-        <div class="d-flex flex-wrap justify-content-center gap-3">
-          <span class="badge skill-badge">C Programming</span>
-          <span class="badge skill-badge">Core Java</span>
-          <span class="badge skill-badge">HTML</span>
-          <span class="badge skill-badge">CSS</span>
-          <span class="badge skill-badge">JavaScript</span>
-          <span class="badge skill-badge">React</span>
-          <span class="badge skill-badge">Python</span>
-          <span class="badge skill-badge">UI/UX Design</span>
-          <span class="badge skill-badge">Canva</span>
-          <span class="badge skill-badge">Figma</span>
-          <span class="badge skill-badge">VS Code</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-5 gradient-text">Featured Projects</h2>
-        <div class="row g-4">
-          <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow project-card">
-              <div class="card-header d-flex justify-content-between">
-                <div>
-                  <h5 class="card-title mb-2">Sanchari Canteen Web UI</h5>
-                  <span class="badge bg-primary">Web Development UI / UX</span>
-                </div>
-                <div>
-                  <a
-                    href="https://github.com/Ashithjain05/Sanchaari_canteen_Web_UI"
-                    target="_blank"
-                    class="text-muted me-2">
-                    <i class="fab fa-github fa-lg"></i>
-                  </a>
-                  <a
-                    href="https://ashithjain05.github.io/Sanchaari_canteen_Web_UI"
-                    target="_blank"
-                    class="text-muted">
-                    <i class="fas fa-external-link-alt fa-lg"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  A static website for food booking while traveling in buses.
-                  Built with HTML, CSS, and JavaScript for seamless user
-                  experience.
-                </p>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary">HTML</span>
-                  <span class="badge bg-secondary">CSS</span>
-                  <span class="badge bg-secondary">JavaScript</span>
-                </div>
-              </div>
+      <div class="about-grid">
+        <div class="about-text reveal-left">
+          <p>I'm a <strong>passionate web developer</strong> and <strong>UI/UX designer</strong> completing my
+            MCA at Siddaganga Institute of Technology, Tumkur. I'm deeply <strong>interested in AI/ML
+              Engineering</strong>
+            and have over 2 years of project-based development experience.</p>
+          <p>With a strong foundation in both frontend and backend technologies, I craft experiences that are not just
+            visually stunning but also highly performant and accessible.</p>
+          <p>When I'm not coding, I'm exploring design trends on Figma, building side projects, or learning the latest
+            in web technology.</p>
+          <div class="about-stats">
+            <div class="stat-card">
+              <span class="stat-number" data-target="5">0</span>+
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="10">0</span>+
+              <span class="stat-label">Technologies</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="2">0</span>+
+              <span class="stat-label">Years Coding</span>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow project-card">
-              <div class="card-header d-flex justify-content-between">
-                <div>
-                  <h5 class="card-title mb-2">Python Libraries with React</h5>
-                  <span class="badge bg-success">Full Stack</span>
-                </div>
-                <a
-                  href="https://github.com/Ashithjain05/python_libarary_npm_modules_with_react"
-                  target="_blank"
-                  class="text-muted">
-                  <i class="fab fa-github fa-lg"></i>
-                </a>
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  Created custom NPM modules combining Python libraries with
-                  React components for enhanced functionality.
-                </p>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary">Python</span>
-                  <span class="badge bg-secondary">React</span>
-                  <span class="badge bg-secondary">NPM</span>
-                </div>
-              </div>
+        </div>
+        <div class="about-card-stack reveal-right">
+          <div class="info-card tilt-card" id="card-loc">
+            <div class="info-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <div class="info-card-title">Location</div>
+              <div class="info-card-value">Tumkur, Karnataka, India</div>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="card h-100 shadow project-card">
-              <div class="card-header d-flex justify-content-between">
-                <div>
-                  <h5 class="card-title mb-2">TaxiGo Car Booking Website</h5>
-                  <span class="badge bg-info">Web Application</span>
-                </div>
-              </div>
-              <div class="card-body">
-                <p class="card-text">
-                  A comprehensive car booking platform with modern UI/UX design
-                  and responsive functionality.
-                </p>
-                <div class="d-flex flex-wrap gap-2">
-                  <span class="badge bg-secondary">HTML</span>
-                  <span class="badge bg-secondary">CSS</span>
-                  <span class="badge bg-secondary">JavaScript</span>
-                  <span class="badge bg-secondary">PHP</span>
-                  <span class="badge bg-secondary">MySQL</span>
-                </div>
-              </div>
+          <div class="info-card tilt-card" id="card-edu">
+            <div class="info-card-icon"><i class="fas fa-graduation-cap"></i></div>
+            <div>
+              <div class="info-card-title">Education</div>
+              <div class="info-card-value">MCA — SIT Tumkur</div>
+            </div>
+          </div>
+          <div class="info-card tilt-card" id="card-focus">
+            <div class="info-card-icon"><i class="fas fa-code"></i></div>
+            <div>
+              <div class="info-card-title">Focus</div>
+              <div class="info-card-value">Web Dev & UI/UX Design</div>
+            </div>
+          </div>
+          <div class="info-card tilt-card" id="card-avail">
+            <div class="info-card-icon"><i class="fas fa-circle-check"></i></div>
+            <div>
+              <div class="info-card-title">Status</div>
+              <div class="info-card-value">Open to Opportunities</div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Education Section -->
-    <section id="education" class="py-5 bg-light text-dark">
-      <div class="container">
-        <h2 class="text-center mb-5 gradient-text">Education</h2>
-        <div class="card shadow-lg border-0">
-          <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Master of Computer Applications (MCA)</h4>
-          </div>
-          <div class="card-body">
-            <h5 class="text-primary">
-              <a
-                href="http://www.sit.ac.in/"
-                target="_blank"
-                class="text-primary text-decoration-none">
-                Siddaganga Institute of Technology (SIT), Tumkur
-              </a>
-            </h5>
-            <p class="mb-2">
-              <i class="fas fa-map-marker-alt me-2"></i>Tumkur, Karnataka
-            </p>
+  <!-- Skills Section -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title">Skills & <span class="highlight">Technologies</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category reveal-up" style="--delay:0s">
+          <h3 class="skill-cat-title"><i class="fas fa-laptop-code"></i> Frontend</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>HTML5</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="95"></div>
+              </div><span>95%</span>
+            </div>
+            <div class="skill-bar-item"><span>CSS3</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="90"></div>
+              </div><span>90%</span>
+            </div>
+            <div class="skill-bar-item"><span>JavaScript</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="82"></div>
+              </div><span>82%</span>
+            </div>
+            <div class="skill-bar-item"><span>React</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="75"></div>
+              </div><span>75%</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-5">
-      <div class="container">
-        <h2 class="text-center mb-5 gradient-text">Let's Connect</h2>
-        <div class="card shadow-lg border-0">
-          <div class="card-body text-center p-5">
-            <p class="lead mb-4">
-              Ready to bring your ideas to life? Let's collaborate on your next
-              project!
-            </p>
-            <div
-              class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-              <a
-                href="mailto:ashithjainbn@gmail.com"
-                class="btn btn-primary btn-lg">
-                <i class="fas fa-envelope me-2"></i>Email Me
-              </a>
-              <a
-                href="https://github.com/Ashithjain05"
-                class="btn btn-outline-dark btn-lg">
-                <i class="fab fa-github me-2"></i>GitHub
-              </a>
-              <a
-                href="https://www.linkedin.com/in/Ashithjain05"
-                class="btn btn-outline-primary btn-lg">
-                <i class="fab fa-linkedin me-2"></i>LinkedIn
-              </a>
+        <div class="skill-category reveal-up" style="--delay:0.15s">
+          <h3 class="skill-cat-title"><i class="fas fa-server"></i> Backend & DB</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Python</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="80"></div>
+              </div><span>80%</span>
+            </div>
+            <div class="skill-bar-item"><span>Core Java</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="75"></div>
+              </div><span>75%</span>
+            </div>
+            <div class="skill-bar-item"><span>PHP</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="65"></div>
+              </div><span>65%</span>
+            </div>
+            <div class="skill-bar-item"><span>MySQL</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="70"></div>
+              </div><span>70%</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category reveal-up" style="--delay:0.3s">
+          <h3 class="skill-cat-title"><i class="fas fa-palette"></i> Design & Tools</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>Figma</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="85"></div>
+              </div><span>85%</span>
+            </div>
+            <div class="skill-bar-item"><span>Canva</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="90"></div>
+              </div><span>90%</span>
+            </div>
+            <div class="skill-bar-item"><span>C Programming</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="78"></div>
+              </div><span>78%</span>
+            </div>
+            <div class="skill-bar-item"><span>VS Code</span>
+              <div class="bar">
+                <div class="bar-fill" data-width="92"></div>
+              </div><span>92%</span>
+            </div>
+          </div>
+        </div>
+        <div class="skill-category reveal-up ai-skill-cat" style="--delay:0.45s">
+          <h3 class="skill-cat-title"><i class="fas fa-brain"></i> AI / ML</h3>
+          <div class="skill-bars">
+            <div class="skill-bar-item"><span>RAG Systems</span>
+              <div class="bar">
+                <div class="bar-fill ai-bar" data-width="78"></div>
+              </div><span>78%</span>
+            </div>
+            <div class="skill-bar-item"><span>Embeddings</span>
+              <div class="bar">
+                <div class="bar-fill ai-bar" data-width="75"></div>
+              </div><span>75%</span>
+            </div>
+            <div class="skill-bar-item"><span>FAISS</span>
+              <div class="bar">
+                <div class="bar-fill ai-bar" data-width="72"></div>
+              </div><span>72%</span>
+            </div>
+            <div class="skill-bar-item"><span>LLM APIs</span>
+              <div class="bar">
+                <div class="bar-fill ai-bar" data-width="80"></div>
+              </div><span>80%</span>
+            </div>
+            <div class="skill-bar-item"><span>Prompt Engineering</span>
+              <div class="bar">
+                <div class="bar-fill ai-bar" data-width="82"></div>
+              </div><span>82%</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <!-- Tech Badges -->
+      <div class="tech-badges reveal-up">
+        <span class="tech-badge"><i class="fab fa-html5"></i> HTML5</span>
+        <span class="tech-badge"><i class="fab fa-css3-alt"></i> CSS3</span>
+        <span class="tech-badge"><i class="fab fa-js"></i> JavaScript</span>
+        <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge"><i class="fab fa-java"></i> Java</span>
+        <span class="tech-badge"><i class="fab fa-php"></i> PHP</span>
+        <span class="tech-badge"><i class="fas fa-database"></i> MySQL</span>
+        <span class="tech-badge"><i class="fab fa-figma"></i> Figma</span>
+        <span class="tech-badge"><i class="fas fa-c"></i> C</span>
+        <span class="tech-badge"><i class="fab fa-git-alt"></i> Git</span>
+        <span class="tech-badge ai-badge"><i class="fas fa-robot"></i> RAG</span>
+        <span class="tech-badge ai-badge"><i class="fas fa-vector-square"></i> FAISS</span>
+        <span class="tech-badge ai-badge"><i class="fas fa-brain"></i> LLM APIs</span>
+        <span class="tech-badge ai-badge"><i class="fas fa-microchip"></i> Ollama</span>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="py-4 bg-dark text-white text-center">
-      <p class="mb-0">© 2025 🤵Ashith Jain B N. All rights reserved.</p>
-    </footer>
+  <!-- AI / ML & RAG Experience Section -->
+  <section id="ai-experience" class="section ai-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">AI-Powered</span>
+        <h2 class="section-title">AI / ML &amp; <span class="highlight">RAG Experience</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <p class="ai-intro reveal-up">
+        I have hands-on experience with <strong>Retrieval-Augmented Generation (RAG)</strong>, embeddings,
+        and building AI-powered systems using LLMs. I integrate intelligent backends into real-world
+        full-stack applications to deliver smarter, context-aware experiences.
+      </p>
+      <div class="ai-cards-grid">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
+        <div class="ai-card tilt-card reveal-up" style="--delay:0s; --ai-color:#8b5cf6">
+          <div class="ai-card-icon"><i class="fas fa-network-wired"></i></div>
+          <h3 class="ai-card-title">RAG (Retrieval-Augmented Generation)</h3>
+          <p class="ai-card-desc">Built end-to-end RAG pipelines that retrieve context from vector stores and feed it to
+            LLMs for accurate, grounded responses.</p>
+          <div class="ai-card-shine"></div>
+        </div>
+
+        <div class="ai-card tilt-card reveal-up" style="--delay:0.1s; --ai-color:#6366f1">
+          <div class="ai-card-icon"><i class="fas fa-cubes"></i></div>
+          <h3 class="ai-card-title">Embeddings (HuggingFace / sentence-transformers)</h3>
+          <p class="ai-card-desc">Generated semantic text embeddings using HuggingFace models and sentence-transformers
+            for similarity search and clustering.</p>
+          <div class="ai-card-shine"></div>
+        </div>
+
+        <div class="ai-card tilt-card reveal-up" style="--delay:0.2s; --ai-color:#06b6d4">
+          <div class="ai-card-icon"><i class="fas fa-magnifying-glass-chart"></i></div>
+          <h3 class="ai-card-title">FAISS Vector Search</h3>
+          <p class="ai-card-desc">Implemented Facebook AI Similarity Search (FAISS) indexes for blazing-fast
+            nearest-neighbour retrieval of high-dimensional embeddings.</p>
+          <div class="ai-card-shine"></div>
+        </div>
+
+        <div class="ai-card tilt-card reveal-up" style="--delay:0.3s; --ai-color:#a78bfa">
+          <div class="ai-card-icon"><i class="fas fa-robot"></i></div>
+          <h3 class="ai-card-title">LLM Integration (Ollama / LLaMA)</h3>
+          <p class="ai-card-desc">Integrated LLaMA models locally via Ollama for secure, private, and high-performance
+            inference within full-stack applications.</p>
+          <div class="ai-card-shine"></div>
+        </div>
+
+        <div class="ai-card tilt-card reveal-up" style="--delay:0.4s; --ai-color:#10b981">
+          <div class="ai-card-icon"><i class="fas fa-database"></i></div>
+          <h3 class="ai-card-title">SQL AI Assistant</h3>
+          <p class="ai-card-desc">Built a Natural Language to SQL engine powered by LLMs — users ask questions in plain
+            English and get instant, accurate SQL query results.</p>
+          <div class="ai-card-shine"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <!-- Project Section -->
+      <div class="projects-grid">
+        <!-- Project 1: AutoVerse -->
+        <div class="project-card tilt-card reveal-up" style="--delay:0s">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-car-side"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/Ashithjain05/autoverse_unified-vehicle-information-platform-using-MERN"
+                target="_blank" class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://autoversefrontend.vercel.app/" target="_blank" class="project-link" title="Live Demo"><i
+                  class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-badge" style="--badge-color:#8b5cf6">Full Stack</div>
+          <h3 class="project-title">AutoVerse Platform</h3>
+          <p class="project-desc">A full-stack vehicle information platform. Built with the MERN stack.</p>
+          <div class="project-tags">
+            <span>MERN</span><span>React</span><span>MongoDB</span>
+          </div>
+        </div>
+
+        <!-- Project 2: CineVexa -->
+        <div class="project-card tilt-card reveal-up" style="--delay:0.1s">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-film"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/Ashithjain05/cinevexa_movie_recommender-" target="_blank" class="project-link"
+                title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://cinevexa-frontend.vercel.app/" target="_blank" class="project-link" title="Live Demo"><i
+                  class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-badge" style="--badge-color:#6366f1">Full Stack</div>
+          <h3 class="project-title">CineVexa Movie Recommender</h3>
+          <p class="project-desc">A movie exploration and personalized recommendation platform powered by the TMDB API.
+            Features seamless search and movie details with a modern UI.</p>
+          <div class="project-tags">
+            <span>React</span><span>Node.js</span><span>TMDB API</span><span>Vite</span>
+          </div>
+        </div>
+
+        <!-- Project 3: Sanchari Canteen -->
+        <div class="project-card tilt-card reveal-up" style="--delay:0.2s">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-utensils"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/Ashithjain05/Sanchaari_canteen_Web_UI" target="_blank" class="project-link"
+                title="GitHub"><i class="fab fa-github"></i></a>
+              <a href="https://ashithjain05.github.io/Sanchaari_canteen_Web_UI" target="_blank" class="project-link"
+                title="Live Demo"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <div class="project-badge">UI / UX</div>
+          <h3 class="project-title">Sanchari Canteen</h3>
+          <p class="project-desc">A responsive static website for food booking while traveling in buses.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>JS</span>
+          </div>
+        </div>
+
+        <!-- Project 4: Python Libraries -->
+        <div class="project-card tilt-card reveal-up" style="--delay:0.3s">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon"><i class="fab fa-python"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/Ashithjain05/python_libarary_npm_modules_with_react" target="_blank"
+                class="project-link" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-badge" style="--badge-color:#10b981">Full Stack</div>
+          <h3 class="project-title">Python Libraries with React</h3>
+          <p class="project-desc">Created custom NPM modules that bridge Python libraries with React components,
+            creating a powerful hybrid ecosystem for enhanced functionality.</p>
+          <div class="project-tags">
+            <span>Python</span><span>React</span><span>NPM</span>
+          </div>
+        </div>
+
+        <!-- Project 5: TaxiGo -->
+        <div class="project-card tilt-card reveal-up" style="--delay:0.4s">
+          <div class="project-card-glow"></div>
+          <div class="project-header">
+            <div class="project-icon"><i class="fas fa-car"></i></div>
+            <div class="project-links">
+              <a href="https://github.com/Ashithjain05" target="_blank" class="project-link" title="GitHub"><i
+                  class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <div class="project-badge" style="--badge-color:#f59e0b">Web App</div>
+          <h3 class="project-title">TaxiGo Car Booking</h3>
+          <p class="project-desc">A comprehensive car booking platform with modern UI/UX design, user authentication,
+            booking management and a responsive frontend built with PHP & MySQL.</p>
+          <div class="project-tags">
+            <span>HTML</span><span>CSS</span><span>PHP</span><span>MySQL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section education-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">My Journey</span>
+        <h2 class="section-title">Edu<span class="highlight">cation</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item reveal-left">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card tilt-card">
+            <div class="timeline-icon"><i class="fas fa-university"></i></div>
+            <div class="timeline-year">2024 — 2026</div>
+            <h3>Master of Computer Applications (MCA)</h3>
+            <a href="http://www.sit.ac.in/" target="_blank" class="timeline-institution">
+              <i class="fas fa-map-marker-alt"></i> Siddaganga Institute of Technology (SIT), Tumkur
+            </a>
+            <p>Specializing in advanced software engineering, web technologies, AI/ML fundamentals, and database
+              systems. Building real-world applications as academic projects.</p>
+            <div class="timeline-tags">
+              <span>Software Engineering</span>
+              <span>Web Development</span>
+              <span>AI/ML</span>
+              <span>Databases</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <div class="section-header reveal-up">
+        <span class="section-tag">Say Hello</span>
+        <h2 class="section-title">Let's <span class="highlight">Connect</span></h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-text reveal-left">
+          <h3>Got an idea? Let's build it together.</h3>
+          <p>Whether you have a project in mind, want to collaborate, or just want to say hi — my inbox is always open.
+            I'll get back to you within 24 hours!</p>
+          <div class="contact-socials">
+            <a href="mailto:ashithjainbn@gmail.com" class="social-card" id="social-email">
+              <div class="social-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <div class="social-title">Email</div>
+                <div class="social-value">ashithjainbn@gmail.com</div>
+              </div>
+            </a>
+            <a href="https://github.com/Ashithjain05/My_Portfolio" target="_blank" class="social-card" id="social-github">
+              <div class="social-icon"><i class="fab fa-github"></i></div>
+              <div>
+                <div class="social-title">GitHub</div>
+                <div class="social-value">@Ashithjain05</div>
+              </div>
+            </a>
+            <a href="https://www.linkedin.com/in/Ashithjain05" target="_blank" class="social-card" id="social-linkedin">
+              <div class="social-icon"><i class="fab fa-linkedin"></i></div>
+              <div>
+                <div class="social-title">LinkedIn</div>
+                <div class="social-value">/in/Ashithjain05</div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <form class="contact-form reveal-right" id="contact-form" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="contact-name">Your Name</label>
+            <input type="text" id="contact-name" name="name" placeholder="John Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email Address</label>
+            <input type="email" id="contact-email" name="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="contact-msg">Message</label>
+            <textarea id="contact-msg" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <div class="form-success" id="form-success">
+            <i class="fas fa-check-circle"></i> Message sent! I'll reply soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-bracket">&lt;</span>AJ<span class="logo-bracket">/&gt;</span>
+      </div>
+      <p class="footer-text">Designed & Built by <strong>Ashith Jain B N</strong> with ❤️ &amp; lots of ☕</p>
+      <a href="https://github.com/Ashithjain05/My_Portfolio" target="_blank" class="footer-source">
+        <i class="fab fa-github"></i> View Source on GitHub
+      </a>
+      <p class="footer-copy">© 2025 Ashith Jain B N. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="src/main.js"></script>
+</body>
+
 </html>
