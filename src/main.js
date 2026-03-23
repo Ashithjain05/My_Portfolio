@@ -245,9 +245,7 @@ window.handleFormSubmit = async function(e) {
   btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
 
   const formData = new FormData(form);
-  // NOTE: You can get your free Access Key at https://web3forms.com/
-  // Replace YOUR_ACCESS_KEY_HERE with your actual key
-  formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+  formData.append("access_key", "ec249936-fd3a-4092-bb0b-ff5693abc207");
 
   try {
     const response = await fetch("https://api.web3forms.com/submit", {
